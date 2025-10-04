@@ -15,5 +15,5 @@ public interface IClienteService {
 	void removePorId(Long id);
 	Optional<Cliente> buscarPorCpf(Long cpf);
 	Optional<Cliente> buscarPorId(Long id);
-	Page<Cliente> bucar(Pageable pageable);
+	Page<Cliente> bucar(Cliente filter, Pageable pageable);
 }

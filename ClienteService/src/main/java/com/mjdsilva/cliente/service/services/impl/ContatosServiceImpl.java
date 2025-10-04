@@ -51,8 +51,8 @@ public class ContatosServiceImpl implements IContatosService{
 	}
 
 	@Override
-	public Optional<Contatos> buscarPorClienteId(Long id) {
-		return contatosRepository.findById(id);
+	public Contatos buscarPorClienteId(Long id) {
+		return contatosRepository.findByIdCliente_Id(id);
 	}
 
 	@Override

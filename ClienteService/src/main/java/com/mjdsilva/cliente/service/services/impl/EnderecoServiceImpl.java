@@ -57,7 +57,7 @@ public class EnderecoServiceImpl implements IEnderecoService{
 		if(id==null) {
 			throw new IllegalArgumentException("Id não pode ser nulo");
 		}
-		return Optional.of(enderecoRepository.findByIdCliente(id));
+		return Optional.of(enderecoRepository.findByIdCliente_Id(id));
 	}
 
 	@Override

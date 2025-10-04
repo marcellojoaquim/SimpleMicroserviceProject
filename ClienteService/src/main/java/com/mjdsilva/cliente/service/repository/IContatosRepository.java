@@ -8,6 +8,6 @@ import com.mjdsilva.cliente.service.model.Contatos;
 @Repository
 public interface IContatosRepository extends JpaRepository<Contatos, Long>{
 	
-	Contatos findByIdCliente(Long id);
+	Contatos findByIdCliente_Id(Long id);
 	Contatos findByEmail(String email);
 }

@@ -13,6 +13,6 @@ public interface IContatosService {
 	Contatos atualizar(Contatos contatos);
 	void remover(Long id);
 	Optional<Contatos> buscarPorId(Long id);
-	Optional<Contatos> buscarPorClienteId(Long id);
+	Contatos buscarPorClienteId(Long id);
 	Page<Contatos> bucar(Pageable pageable);
 }

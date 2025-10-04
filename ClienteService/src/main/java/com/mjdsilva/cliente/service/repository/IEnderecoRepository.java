@@ -8,5 +8,5 @@ import com.mjdsilva.cliente.service.model.Endereco;
 @Repository
 public interface IEnderecoRepository extends JpaRepository<Endereco, Long>{
 	
-	Endereco findByIdCliente(Long id);
+	Endereco findByIdCliente_Id(Long id);
 }

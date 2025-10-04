@@ -2,6 +2,8 @@ package com.mjdsilva.cliente.service.services.impl;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -65,8 +67,14 @@ public class CLienteServiceImpl implements IClienteService{
 	}
 
 	@Override
-	public Page<Cliente> bucar(Pageable pageable) {
-		return clienteRepository.findAll(pageable);
+	public Page<Cliente> bucar(Cliente filter, Pageable pageable) {
+		Example<Cliente> example = Example.of(filter, 
+				ExampleMatcher
+				.matching()
+				.withIgnoreCase()
+				.withIgnoreNullValues()
+				.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
+		return clienteRepository.findAll(example, pageable);
 	}
 
 }
