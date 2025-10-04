@@ -1,0 +1,10 @@
+server:
+  port: 8082
+  wait-time-in-ms-when-sync-empty: 3000
+spring:
+  data:
+    mongodb:
+      uri: mongodb://adm:root@172.17.0.4:27017/ebac?authSource=admin&retryWrites=true&w=majority
+      database: produto-service
+      auto-index-creation: true
+application-version: 1.0.0
