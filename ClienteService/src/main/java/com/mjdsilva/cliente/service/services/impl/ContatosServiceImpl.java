@@ -1,11 +1,14 @@
 package com.mjdsilva.cliente.service.services.impl;
 
-import java.util.Optional;
+
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mjdsilva.cliente.service.exception.BusinessException;
 import com.mjdsilva.cliente.service.model.Cliente;
@@ -54,17 +57,20 @@ public class ContatosServiceImpl implements IContatosService{
 	}
 
 	@Override
-	public Contatos atualizar(Contatos contatos) {
-		if(contatos.getId() == null || contatos.getEmail() == null || contatos.getTel() == null || contatos.getCliente().getId() != null) {
-			throw new IllegalArgumentException("Propriedade obrigatórias nulas");
-		}
-		return contatosRepository.save(contatos);
+	@Transactional
+	public ContatoResponseDto atualizar(Long id, ContatosDto contatosDto) {
+		Contatos contatos = contatosRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Contatos não encontrados para o id informado"));
+		contatos.setEmail(contatosDto.getEmail());
+		contatos.setTel(contatosDto.getTel());
+		
+		contatosRepository.save(contatos);
+		return modelMapper.map(contatos, ContatoResponseDto.class); 
 	}
 
 	@Override
 	public void remover(Long id) {
 		if(id == null ) {
-			throw new IllegalArgumentException("ID não pode ser nulo");
+			throw new BusinessException("ID não pode ser nulo");
 		}
 		contatosRepository.deleteById(id);
 	}
@@ -90,8 +96,13 @@ public class ContatosServiceImpl implements IContatosService{
 	}
 
 	@Override
-	public Page<Contatos> bucar(Pageable pageable) {
-		return contatosRepository.findAll(pageable);
+	public Page<Contatos> bucar(Contatos filter, Pageable pageable) {
+		Example<Contatos> example = Example.of(filter, ExampleMatcher
+				.matching()
+				.withIgnoreCase()
+				.withIgnoreNullValues()
+				.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
+		return contatosRepository.findAll(example, pageable);
 	}
 	
 	

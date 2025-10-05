@@ -13,9 +13,9 @@ import jakarta.persistence.EntityNotFoundException;
 public interface IContatosService {
 	
 	ContatosDto cadastrar(ContatosDto contatosDto);
-	Contatos atualizar(Contatos contatos);
+	ContatoResponseDto atualizar(Long id, ContatosDto contatos);
 	void remover(Long id);
 	ContatoResponseDto buscarPorId(Long id);
 	ContatoResponseDto buscarPorClienteId(Long clienteId) throws EntityNotFoundException;
-	Page<Contatos> bucar(Pageable pageable);
+	Page<Contatos> bucar(Contatos contatos, Pageable pageable);
 }
