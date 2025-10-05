@@ -41,5 +41,5 @@ public class Contatos {
 	@JoinColumn(name = "id_cliente_fk", 
 				foreignKey = @ForeignKey(name = "fk_contatos_cliente"),
 				referencedColumnName = "id", nullable = false)
-	private Cliente idCliente;
+	private Cliente cliente;
 }

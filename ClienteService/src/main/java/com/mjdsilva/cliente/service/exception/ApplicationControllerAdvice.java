@@ -1,5 +1,7 @@
 package com.mjdsilva.cliente.service.exception;
 
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.mjdsilva.cliente.service.exception.errors.ApiErrors;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
@@ -30,5 +34,11 @@ public class ApplicationControllerAdvice {
 	@ExceptionHandler(ResponseStatusException.class)
 	public ResponseEntity handlerResponseStatusException(ResponseStatusException exception) {
 		return new ResponseEntity(new ApiErrors(exception), exception.getStatusCode());
+	}
+	
+	@ExceptionHandler(EntityNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public Map<String, String> handleEntityNotFound(EntityNotFoundException exception) {
+		return Map.of("Erro",exception.getMessage());
 	}
 }

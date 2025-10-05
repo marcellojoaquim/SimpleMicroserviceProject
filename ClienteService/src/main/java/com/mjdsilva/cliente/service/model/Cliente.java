@@ -42,7 +42,7 @@ public class Cliente {
 	@OneToOne(mappedBy = "idCliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Endereco endereco;
 	
-	@OneToOne(mappedBy = "idCliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Contatos contatos;
 	
 }

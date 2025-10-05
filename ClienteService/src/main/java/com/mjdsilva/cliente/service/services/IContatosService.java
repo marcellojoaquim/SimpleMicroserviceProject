@@ -1,18 +1,21 @@
 package com.mjdsilva.cliente.service.services;
 
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.mjdsilva.cliente.service.model.Contatos;
+import com.mjdsilva.cliente.service.model.dto.ContatoResponseDto;
+import com.mjdsilva.cliente.service.model.dto.ContatosDto;
+
+import jakarta.persistence.EntityNotFoundException;
 
 public interface IContatosService {
 	
-	Contatos cadastrar(Contatos contatos);
+	ContatosDto cadastrar(ContatosDto contatosDto);
 	Contatos atualizar(Contatos contatos);
 	void remover(Long id);
-	Optional<Contatos> buscarPorId(Long id);
-	Contatos buscarPorClienteId(Long id);
+	ContatoResponseDto buscarPorId(Long id);
+	ContatoResponseDto buscarPorClienteId(Long clienteId) throws EntityNotFoundException;
 	Page<Contatos> bucar(Pageable pageable);
 }
