@@ -76,5 +76,5 @@ public class CLienteServiceImpl implements IClienteService{
 				.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
 		return clienteRepository.findAll(example, pageable);
 	}
-
+	
 }
