@@ -19,5 +19,5 @@ public class ContatoResponseDto {
 	private String email;
 	
 	@NotNull
-	private Integer tel;
+	private Long tel;
 }

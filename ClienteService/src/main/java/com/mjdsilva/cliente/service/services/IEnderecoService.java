@@ -1,18 +1,18 @@
 package com.mjdsilva.cliente.service.services;
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.mjdsilva.cliente.service.model.Endereco;
+import com.mjdsilva.cliente.service.model.dto.EnderecoDto;
+import com.mjdsilva.cliente.service.model.dto.EnderecoResponseDto;
 
 public interface IEnderecoService {
 	
-	Endereco cadastrar(Endereco endereco);
-	Endereco atualizar(Endereco endereco);
+	EnderecoResponseDto cadastrar(EnderecoDto endereco);
+	EnderecoResponseDto atualizar(Long id, EnderecoDto endereco);
 	void remover(Long id);
-	Optional<Endereco> buscarPorId(Long id);
-	Optional<Endereco> buscarPorClienteId(Long id);
-	Page<Endereco> bucar(Pageable pageable);
+	EnderecoResponseDto buscarPorClienteId(Long id);
+	EnderecoResponseDto buscarPorId(Long id);
+	Page<Endereco> bucar(Endereco filter, Pageable pageable);
 }

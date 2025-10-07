@@ -32,7 +32,7 @@ public class Contatos {
 	private Long id;
 	
 	@Column(name = "telefone", nullable = false, unique = true)
-	private Integer tel;
+	private Long tel;
 	
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;

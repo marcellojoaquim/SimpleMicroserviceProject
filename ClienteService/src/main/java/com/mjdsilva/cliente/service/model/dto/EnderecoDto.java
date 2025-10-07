@@ -10,17 +10,29 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContatosDto {
+@Builder
+public class EnderecoDto {
+	
+	@NotNull
+	private String rua;
+	
+	@NotNull
+	private String numero;
+	
+	@NotNull
+	private String bairro;
+	
+	@NotNull
+	private String cidade;
+	
+	@NotNull
+	private String estado;
+	
+	@NotNull
+	private String cep;
 	
 	@NotBlank
-	private String email;
-	
-	@NotNull
-	private Long tel;
-	
-	@NotNull
 	private Long clienteId;
 }

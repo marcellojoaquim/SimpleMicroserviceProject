@@ -31,7 +31,7 @@ public class Endereco {
 	@SequenceGenerator(name = "ende_seq", sequenceName = "seq_end", initialValue = 1)
 	private Long id;
 	
-	@Column(name = "nome", nullable = false, length = 50)
+	@Column(name = "rua", nullable = false, length = 50)
 	private String rua;
 	
 	@Column(name = "numero", nullable = false, length = 20)

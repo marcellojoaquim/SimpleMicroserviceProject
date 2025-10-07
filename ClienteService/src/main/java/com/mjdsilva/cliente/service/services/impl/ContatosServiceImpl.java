@@ -84,9 +84,6 @@ public class ContatosServiceImpl implements IContatosService{
 	@Override
 	public ContatoResponseDto buscarPorClienteId(Long clienteId) {
 		Contatos ctt = contatosRepository.findByCliente_Id(clienteId);
-		if(clienteRepository.findById(clienteId) == null) {
-			throw new EntityNotFoundException("CLiente não existe para este Id");
-		}
 		
 		if(ctt == null) {
 			throw new EntityNotFoundException("Contatos não encontrados");
