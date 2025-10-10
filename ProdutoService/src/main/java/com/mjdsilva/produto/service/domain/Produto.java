@@ -35,6 +35,11 @@ public class Produto {
 	@NotNull
 	@Size(min = 4, max = 10)
 	@Indexed(unique = true, background = true)
+	private String nome;
+	
+	@NotNull
+	@Size(min = 4, max = 10)
+	@Indexed(unique = true, background = true)
 	private String codigo;
 	
 	@NotNull

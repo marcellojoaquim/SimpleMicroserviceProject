@@ -1,6 +1,5 @@
 package com.mjdsilva.cliente.service.model.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +32,6 @@ public class EnderecoDto {
 	@NotNull
 	private String cep;
 	
-	@NotBlank
+	@NotNull
 	private Long clienteId;
 }

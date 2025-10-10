@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-container
+    restart: always 
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: adm
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: ebac 
+  postgresdb:
+    image: postgres:15-alpine
+    container_name: postgres-container
+    restart: always 
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: cliente-service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

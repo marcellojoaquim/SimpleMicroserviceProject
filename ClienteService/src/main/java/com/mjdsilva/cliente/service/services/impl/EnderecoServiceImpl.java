@@ -95,7 +95,7 @@ public class EnderecoServiceImpl implements IEnderecoService{
 	
 	private Endereco toEnderecoFromDto(Endereco endereco, EnderecoDto dto) {
 		
-		Cliente cliente = clienteRepository.findById(dto.getClienteId()).get();
+		Cliente cliente = clienteRepository.findById(dto.getClienteId()).orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
 		
 		endereco.setRua(dto.getRua());
 		endereco.setNumero(dto.getNumero());
