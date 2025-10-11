@@ -15,5 +15,6 @@ public interface IClienteService {
 	void removePorId(Long id);
 	Optional<Cliente> buscarPorCpf(Long cpf);
 	Optional<Cliente> buscarPorId(Long id);
+	Boolean isCadastrado(Long id);
 	Page<Cliente> bucar(Cliente filter, Pageable pageable);
 }

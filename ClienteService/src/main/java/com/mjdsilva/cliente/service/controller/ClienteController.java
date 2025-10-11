@@ -1,6 +1,7 @@
 package com.mjdsilva.cliente.service.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -87,6 +89,11 @@ public class ClienteController {
 		Cliente cliente = clienteService.buscarPorId(id)
 				.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		clienteService.remover(cliente);
+	}
+	
+	@GetMapping(value = "isCadastrado/{id}")
+	public ResponseEntity<Boolean> isCadastrado(@PathVariable(value = "id", required = true) Long id) {
+		return ResponseEntity.ok(clienteService.isCadastrado(id));
 	}
 	
 }

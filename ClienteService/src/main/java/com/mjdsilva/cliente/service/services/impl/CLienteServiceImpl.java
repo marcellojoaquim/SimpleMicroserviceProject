@@ -76,5 +76,14 @@ public class CLienteServiceImpl implements IClienteService{
 				.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
 		return clienteRepository.findAll(example, pageable);
 	}
+
+
+	@Override
+	public Boolean isCadastrado(Long id) {
+		Optional<Cliente> cliente = clienteRepository.findById(id);
+		return cliente.isPresent() ? true : false;
+	}
+	
+	
 	
 }

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mjsilva.vendas.domain.Venda;
 import com.mjsilva.vendas.domain.dto.VendaDto;
-import com.mjsilva.vendas.repository.CadastrarVenda;
 import com.mjsilva.vendas.usecase.BuscarVenda;
+import com.mjsilva.vendas.usecase.CadastrarVenda;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -62,5 +62,27 @@ public class VendaController {
 		
 	}
 	
+	@PutMapping("/codigo/{codigo}/{codigoProduto}/{quantidade}/addProduto")
+	@Operation(summary = "Adicionar produto a venda")
+	public ResponseEntity<Venda> adicionarProdutoPorVendaCodigo(
+			@PathVariable(required = true) String codigo,
+			@PathVariable(required = true) String codigoProduto,
+			@PathVariable(required = true) Integer quantidade){
+		
+		return ResponseEntity.ok(cadastrarVenda.adicionarProdutoPorCodigoVenda(codigo, codigoProduto, quantidade));
+		
+	}
+	
+	@PutMapping("/{id}")
+	@Operation(summary = "Finalizar uma venda")
+	public ResponseEntity<Venda> finalizarVenda(@PathVariable(required = true) String id) {
+		return ResponseEntity.ok(cadastrarVenda.finalizar(id));
+	}
+	
+	@PutMapping("/codigo/{codigo}")
+	@Operation(summary = "Finalizar uma venda por codigo")
+	public ResponseEntity<Venda> finalizarVendaPorCodigo(@PathVariable(required = true) String codigo) {
+		return ResponseEntity.ok(cadastrarVenda.finalizarPorCodigo(codigo));
+	}
 	
 }
