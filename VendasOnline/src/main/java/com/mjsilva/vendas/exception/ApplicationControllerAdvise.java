@@ -1,4 +1,4 @@
-package com.mjdsilva.produto.service.exception;
+package com.mjsilva.vendas.exception;
 
 import java.util.Map;
 
@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.mjdsilva.produto.service.exception.errors.ApiErrors;
+import com.mjsilva.vendas.exception.errors.ApiErrors;
+
 
 @RestControllerAdvice
-public class ApplicationControllerAdvice {
+public class ApplicationControllerAdvise {
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -39,5 +40,4 @@ public class ApplicationControllerAdvice {
 	public Map<String, String> handleEntityNotFound(EntityNotFoundException exception) {
 		return Map.of("Erro",exception.getMessage());
 	}
-	
 }
