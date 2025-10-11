@@ -99,7 +99,7 @@ public class Venda {
 		}
 	}
 
-	private void recalcularValorTotalVenda() {
+	public void recalcularValorTotalVenda() {
 		BigDecimal valorTotal = BigDecimal.ZERO;
 		for(ProdutoQuantidade produtoQuantidade: this.produtos) {
 			valorTotal = valorTotal.add(produtoQuantidade.getValorTotal());
@@ -109,7 +109,7 @@ public class Venda {
 		
 	}
 
-	private void validarStatus() {
+	public void validarStatus() {
 		if(this.status == Status.CONCLUIDA || this.status == Status.CANCELADA) {
 			throw new UnsupportedOperationException("Impossivel alterar uma venda finalizada ou cancelada.");
 		}
