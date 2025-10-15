@@ -1,11 +1,13 @@
 package com.mjsilva.vendas.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import com.mjsilva.vendas.domain.Produto;
 import com.mjsilva.vendas.domain.ProdutoQuantidade;
 import com.mjsilva.vendas.domain.Venda;
 import com.mjsilva.vendas.domain.Venda.Status;
@@ -48,9 +51,14 @@ public class CadastrarVendaTest {
 	private Venda venda01;
 	private Venda venda;
 	private VendaDto dto;
+	private Produto produto = new Produto();
+	private BigDecimal valorTotal = new BigDecimal(1500);
 	
 	@BeforeEach
 	void setUp() {
+		produto.setValor(BigDecimal.valueOf(1500l));
+		produtoQuantidade = new ProdutoQuantidade(produto, 1, valorTotal);
+		
 		venda01 = Venda.builder()
 				.id("1234567899")
 				.clienteId(CODIGO_CLIENTE)
@@ -58,7 +66,7 @@ public class CadastrarVendaTest {
 				.dataVenda(dataVenda)
 				.produtos(Set.of(produtoQuantidade))
 				.status(STATUS)
-				.valorTotal(BigDecimal.valueOf(1500))
+				.valorTotal(valorTotal)
 				.build();
 		
 		venda = Venda.builder()
@@ -67,7 +75,7 @@ public class CadastrarVendaTest {
 				.dataVenda(dataVenda)
 				.produtos(Set.of(produtoQuantidade))
 				.status(STATUS)
-				.valorTotal(BigDecimal.valueOf(1500))
+				.valorTotal(valorTotal)
 				.build();				
 
 		dto = VendaDto.builder()
@@ -79,10 +87,13 @@ public class CadastrarVendaTest {
 	
 	@Test
 	void cadastrarVenda() {
-		when(modelMapper.map(eq(dto), eq(Venda.class))).thenReturn(venda01);
-		
-		Venda result = cadastrarVenda.cadastrar(dto);
-		
-		assertEquals(venda01.getCodigo(), result.getCodigo());
+	    when(modelMapper.map(any(VendaDto.class), eq(Venda.class))).thenReturn(venda);
+
+	    when(vendaRepository.findByClienteIdAndStatus(any(), any())).thenReturn(Optional.empty()); 
+	    when(vendaRepository.insert(any(Venda.class))).thenReturn(venda01);
+	    
+	    Venda result = cadastrarVenda.cadastrar(dto); 
+
+	    assertEquals(venda01.getCodigo(), result.getCodigo());
 	}
 }
