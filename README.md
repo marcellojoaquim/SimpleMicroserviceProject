@@ -52,3 +52,4 @@ Instruções para executar o projeto
 
 # Diagrama
 
+| ![Imagem 1](utils/Vendas-Microservice.drawio.svg) |
