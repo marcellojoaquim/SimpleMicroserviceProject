@@ -14,4 +14,13 @@ application:
   clienteService:
     url: http://localhost:8081
     endpointConsultarCliente: ${application.clienteService.url}/cliente/isCadastrado/{id}
-application-version: 1.0.0
+eureka:
+  instance:
+    hostname: ${DISCOVERY_HOST:localhost}
+    port: 9091
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+application-version: 2.0.0
