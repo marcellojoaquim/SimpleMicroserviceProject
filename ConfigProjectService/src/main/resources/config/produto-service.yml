@@ -16,4 +16,9 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 application-version: 2.0.0
